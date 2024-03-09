@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: storybook
+    build:
+      context: .
+    tty: true
+    environment:
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./example_app/src:/app/src
+      - ./example_app/.storybook:/app/.storybook
+    ports:
+      - '6006:6006'
+    command: sh -c "npm run storybook" 
